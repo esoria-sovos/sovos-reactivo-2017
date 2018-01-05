@@ -9,19 +9,20 @@ const columns = [{
   width: '30%',
 }, {
   title: 'body',
-  dataIndex: 'body', 
+  dataIndex: 'body',
   width: '20%',
 }];
 
 class Listado extends React.Component {
 
-  state = { 
+  state = {
     showPostForm: false,
-    postSeleccionado: {} 
+    postSeleccionado: {}
   }
-  
+
   componentWillMount(){
     this.props.actions.fetchPosts();
+    this.props.actions.workingInServer();
   }
 
   handlePlusClick = () => {
@@ -34,12 +35,13 @@ class Listado extends React.Component {
   }
 
   render() {
+    if (!this.props.trabajando) this.props.notWorkingInServer()
     return (
       <div className="content-inner">
         <Layout >
           <Content>
             <Button className="editable-add-btn" onClick={this.handlePlusClick}>Nuevo Post</Button>
-            <Table 
+            <Table
               columns={columns}
               rowKey={record => record.id}
               dataSource={this.props.posts}
@@ -50,7 +52,7 @@ class Listado extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 Listado.propTypes = {

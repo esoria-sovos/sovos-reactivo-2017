@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(postsActions, dispatch)
+    actions: bindActionCreators(Object.assign({},appActions, postsActions), dispatch)
   };
 }
 

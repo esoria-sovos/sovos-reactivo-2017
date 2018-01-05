@@ -9,7 +9,13 @@ const MenuItemGroup = Menu.ItemGroup;
 const { Header, Sider, Content } = Layout;
 
 class AppSideBar extends React.Component {
-
+  showMessage = () => {
+    if (this.props.trabajandoEnServidor) {
+      return <div>Trabajando en el Server...</div>
+    }else{
+      return <div>NO haciendo nada</div>
+    }
+  }
   render() {
     return (
       <div>
@@ -19,9 +25,9 @@ class AppSideBar extends React.Component {
               <div className="logo">
                 Sovos Reactivo
               </div>
-              <Menu 
-                theme="dark" 
-                mode="vertical" 
+              <Menu
+                theme="dark"
+                mode="vertical"
                 defaultSelectedKeys={['1']}
               >
                 <Menu.Item key="1">
@@ -36,6 +42,7 @@ class AppSideBar extends React.Component {
                 </Menu.Item>
               </Menu>
             </Sider>
+            {this.showMessage()}
           </Col>
         </Row>
       </div>
